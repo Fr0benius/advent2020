@@ -18,6 +18,10 @@ pub fn parse_re<'a, T: Extract<'a>>(re: &Regex, s: &'a str) -> T {
     T::extract(&mut re_captures(re, s))
 }
 
+pub fn parse_iter<'a, T: Extract<'a>, I: Iterator<Item = &'a str>>(iter: &mut I) -> T {
+    T::extract(iter)
+}
+
 pub trait Extract<'a> {
     fn extract<I: Iterator<Item = &'a str>>(iter: &mut I) -> Self;
 }
@@ -31,6 +35,17 @@ impl<'a> Extract<'a> for &'a str {
 impl<'a> Extract<'a> for String {
     fn extract<I: Iterator<Item = &'a str>>(iter: &mut I) -> Self {
         iter.next().unwrap().into()
+    }
+}
+
+impl<'a, T: Extract<'a>> Extract<'a> for Vec<T> {
+    fn extract<I: Iterator<Item = &'a str>>(iter: &mut I) -> Self {
+        let mut res = vec![];
+        let mut iter = iter.peekable();
+        while iter.peek() != None {
+            res.push(T::extract(&mut iter));
+        }
+        res
     }
 }
 
