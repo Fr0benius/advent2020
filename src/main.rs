@@ -1,7 +1,7 @@
 use advent2020::*;
 
 fn main() {
-    day13::run();
+    dbg!(day20::run());
 }
 
 

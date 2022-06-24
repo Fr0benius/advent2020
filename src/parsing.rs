@@ -22,6 +22,11 @@ pub fn parse_iter<'a, T: Extract<'a>, I: Iterator<Item = &'a str>>(iter: &mut I)
     T::extract(iter)
 }
 
+pub fn re_parser<'a, T: Extract<'a>>(re_str: &str) -> impl (Fn(&'a str) -> T) {
+    let re = new_re(re_str);
+    move |s| parse_re(&re, s)
+}
+
 pub trait Extract<'a> {
     fn extract<I: Iterator<Item = &'a str>>(iter: &mut I) -> Self;
 }
@@ -80,3 +85,14 @@ extract_tuple_impl!(A, B);
 extract_tuple_impl!(A, B, C);
 extract_tuple_impl!(A, B, C, D);
 extract_tuple_impl!(A, B, C, D, E);
+extract_tuple_impl!(A, B, C, D, E, F);
+
+pub trait Gather<'a, T> {
+    fn gather(&mut self) -> T;
+}
+
+impl<'a, T: Extract<'a>, I> Gather<'a, T> for I where I: Iterator<Item=&'a str> {
+    fn gather(&mut self) -> T {
+        T::extract(self)
+    }
+}
