@@ -2,7 +2,7 @@ use std::collections::{HashMap, HashSet};
 
 use crate::{
     matching::BipartiteMatcher,
-    parsing::{re_parser, Gather},
+    parsing::re_parser,
 };
 
 pub fn run() -> (usize, String) {

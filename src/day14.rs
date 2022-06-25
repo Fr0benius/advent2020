@@ -63,6 +63,6 @@ fn apply_mask_addr(mut n: i64, mask: &str) -> Vec<i64> {
 pub mod tests {
     #[test]
     fn answer_correct() {
-        assert_eq!(super::run(), (9615006043476, 4275496544925));
+        assert_eq!(super::run(), (9_615_006_043_476, 4_275_496_544_925));
     }
 }

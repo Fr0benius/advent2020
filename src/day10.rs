@@ -29,6 +29,6 @@ pub fn run() -> (i32, i64) {
 pub mod tests {
     #[test]
     fn answer_correct() {
-        assert_eq!(super::run(), (2470, 1973822685184));
+        assert_eq!(super::run(), (2470, 1_973_822_685_184));
     }
 }

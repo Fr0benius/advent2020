@@ -21,6 +21,6 @@ fn find_product(nums: &[i64], k: usize) -> i64 {
 pub mod tests {
     #[test]
     fn answer_correct() {
-        assert_eq!(super::run(), (997899, 131248694));
+        assert_eq!(super::run(), (997_899, 131_248_694));
     }
 }

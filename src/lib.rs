@@ -8,6 +8,7 @@
 #![allow(clippy::wildcard_imports)]
 #![allow(clippy::similar_names)]
 #![allow(clippy::needless_range_loop)]
+#![allow(clippy::many_single_char_names)]
 
 #![warn(clippy::if_same_then_else)]
 
@@ -39,3 +40,5 @@ pub mod day18;
 pub mod day19;
 pub mod day20;
 pub mod day21;
+pub mod day22;
+pub mod day23;
