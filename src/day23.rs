@@ -2,8 +2,8 @@ pub fn run() -> (usize, usize) {
     let input = include_str!("../input/23.txt");
     let init: Vec<usize> = input
         .trim()
-        .chars()
-        .map(|c| (c as u8 - b'0') as usize)
+        .bytes()
+        .map(|c| (c - b'0') as usize)
         .collect();
 
     let part1 = simulate(&init, 100)
